@@ -4,7 +4,7 @@ Simple weather station-esque program, written in Java with the Processing librar
 
 Made for a 480x800 display, have not tested scaling in any way.
 
-![image](https://user-images.githubusercontent.com/33285224/116291563-045b7380-a795-11eb-8c5d-709ac4984f82.png)
+![image](https://user-images.githubusercontent.com/33285224/116291659-22c16f00-a795-11eb-82cc-2dc878850016.png)
 
 ## Install
 
