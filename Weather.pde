@@ -18,7 +18,7 @@ class Weather {
   private int textSize;
   private int lastTemp;
   private int iconX = 0;
-  private int iconY = height/2;
+  private int iconY = 370;
   private int iconWidthHeight = width;
 
   private long lastWeatherTimestamp = 0;
@@ -87,18 +87,18 @@ class Weather {
     getWeather();
 
     fill(255);
-    textAlign(LEFT, TOP);
+    textAlign(CENTER, TOP);
 
     textSize(this.textSize);
-    text(String.format("%s°C", this.lastTemp), 10, height/3);
+    text(String.format("%s°C", this.lastTemp), width/2, 255);
 
     textSize(this.textSize/2);
-    text(this.lastWeather, 10, height/1.95);
+    text(this.lastWeather, width/2, 400);
 
     drawIcon(this.lastIcon);
 
     textSize(this.textSize/4);
-    textAlign(LEFT, BOTTOM);
+    textAlign(CENTER, BOTTOM);
 
     int hours = this.lastWeatherTime.getHour();
     int minutes =  this.lastWeatherTime.getMinute();
@@ -118,6 +118,6 @@ class Weather {
       fixedMinutes = Integer.toString(minutes);
     }
     
-    text(String.format("Last updated at %s:%s", fixedHours, fixedMinutes), 10, height);
+    text(String.format("%s:%s", fixedHours, fixedMinutes), width/2, 785);
   }
 }
