@@ -1,5 +1,5 @@
-# WeatherStation
-Simple weather station-esque program. I was getting tired of my weather station constantly running out of batteries, and it running fast, so I made my own.
+# Weather Station
+Simple weather station-esque program, written in Java with the Processing library. I was getting tired of my weather station constantly running out of batteries, and it running fast, so I made my own.
 
 Made for a 480x800 display, have not tested scaling in any way.
 
