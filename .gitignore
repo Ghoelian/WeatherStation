@@ -1,2 +1,2 @@
-out/*
-!out/*.7z
+out
+variables.json

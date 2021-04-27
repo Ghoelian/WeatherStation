@@ -1,7 +1,13 @@
 import java.time.LocalDate;
 
 class Date {
-  void drawDate(int textSize) {
+  private int textSize;
+  
+  Date (int textSize) {
+    this.textSize = textSize;
+  }
+  
+  void drawDate() {
     int day = day();
     int month = month();
 
@@ -24,9 +30,11 @@ class Date {
     if (dayOfWeek.length() > 3) {
       dayOfWeek = dayOfWeek.substring(0, 3);
     }
+    
+    fill(255);
 
     textAlign(LEFT, TOP);
-    textSize(textSize/1.75);
+    textSize(this.textSize/1.75);
     text(dayOfWeek + ",", 10, 0);
     
     textAlign(RIGHT, TOP);

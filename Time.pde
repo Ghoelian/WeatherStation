@@ -1,5 +1,11 @@
 class Time {
-  void drawTime(int textSize) {
+  private int textSize;
+  
+  Time(int textSize) {
+    this.textSize = textSize;
+  }
+  
+  void drawTime() {
     //Draw time in the 2nd segment.
     int hours = hour();
     int minutes = minute();
@@ -27,12 +33,14 @@ class Time {
       fixedSeconds = Integer.toString(seconds);
     }
     
+    fill(255);
+    
     textAlign(LEFT, BOTTOM);
-    textSize(textSize);
+    textSize(this.textSize);
     text(fixedHours + ":" + fixedMinutes, 10, (height/3)*1.04);
     
     textAlign(RIGHT, BOTTOM);
-    textSize(textSize/2);
+    textSize(this.textSize/2);
     text(fixedSeconds, (width)-10, (height/3)*0.97);
   }
 }
