@@ -17,8 +17,8 @@ Weather weather;
 
 void setup() {
   size(480, 800);
-  
   noCursor();
+  frameRate(10);
   
   variables = loadJSONObject("variables.json");
   
