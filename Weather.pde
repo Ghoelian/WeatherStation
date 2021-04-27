@@ -22,7 +22,7 @@ class Weather {
   private int iconWidthHeight = width;
 
   private long lastWeatherTimestamp = 0;
-  
+
   private LocalDateTime lastWeatherTime;
 
   private Map<String, PImage> icons;
@@ -76,10 +76,10 @@ class Weather {
   void drawIcon(String code) {
     if (this.icons.get(code) == null) {
       PImage image = loadImage(String.format("icons/%s.png", code));
-      
+
       this.icons.put(code, image);
     }
-    
+
     image(this.icons.get(code), iconX, iconY, iconWidthHeight, iconWidthHeight);
   }
 
@@ -94,11 +94,30 @@ class Weather {
 
     textSize(this.textSize/2);
     text(this.lastWeather, 10, height/1.95);
-    
+
     drawIcon(this.lastIcon);
-    
+
     textSize(this.textSize/4);
-    textAlign(RIGHT, BOTTOM);
-    text(String.format("Last updated at %d:%d", this.lastWeatherTime.getHour(), this.lastWeatherTime.getMinute()), 0, height);
+    textAlign(LEFT, BOTTOM);
+
+    int hours = this.lastWeatherTime.getHour();
+    int minutes =  this.lastWeatherTime.getMinute();
+    
+    String fixedHours;
+    String fixedMinutes;
+    
+    if (hours < 10) {
+      fixedHours = "0" + Integer.toString(hours);
+    } else {
+      fixedHours = Integer.toString(hours);
+    }
+
+    if (minutes < 10) {
+      fixedMinutes = "0" + Integer.toString(minutes);
+    } else {
+      fixedMinutes = Integer.toString(minutes);
+    }
+    
+    text(String.format("Last updated at %s:%s", fixedHours, fixedMinutes), 10, height);
   }
 }
