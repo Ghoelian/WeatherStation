@@ -35,9 +35,9 @@ class Date {
 
     textAlign(LEFT, TOP);
     textSize(this.textSize/1.75);
-    text(dayOfWeek, 10, 0);
+    text(dayOfWeek, 10, 5);
     
     textAlign(RIGHT, TOP);
-    text(fixedDay + "/" + fixedMonth, (width)-10, 0);
+    text(fixedDay + "/" + fixedMonth, 470, 5);
   }
 }

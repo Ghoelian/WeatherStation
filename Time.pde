@@ -37,10 +37,10 @@ class Time {
     
     textAlign(LEFT, BOTTOM);
     textSize(this.textSize);
-    text(fixedHours + ":" + fixedMinutes, 10, (height/3)*1.04);
+    text(fixedHours + ":" + fixedMinutes, 10, 277);
     
     textAlign(RIGHT, BOTTOM);
     textSize(this.textSize/2);
-    text(fixedSeconds, (width)-10, (height/3)*0.97);
+    text(fixedSeconds, 470, 207);
   }
 }
