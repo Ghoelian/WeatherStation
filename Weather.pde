@@ -42,21 +42,26 @@ class Weather {
   void getWeather() {
     long now = Instant.ofEpochSecond(0L).until(Instant.now(), ChronoUnit.SECONDS);
 
-    if (lastWeatherTimestamp == 0 || (now - lastWeatherTimestamp) > 600) {
+    if (lastWeatherTimestamp == 0 || (now - lastWeatherTimestamp) > 1800) {
       GetRequest request = new GetRequest(String.format("https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric", this.lat, this.lon, this.apiKey));
       request.send();
+      
+      JsonObject todayWeather = null;
 
-      String result = request.getContent();
-      JsonObject resultObj = JsonParser.parseString(result).getAsJsonObject();
+      try {
+        String result = request.getContent();
+        JsonObject resultObj = JsonParser.parseString(result).getAsJsonObject();
 
-      JsonObject todayWeather = resultObj.get("current").getAsJsonObject();
+        todayWeather = resultObj.get("current").getAsJsonObject();
+      }
+      finally {
+        this.lastWeather = todayWeather.get("weather").getAsJsonArray().get(0).getAsJsonObject().get("main").getAsString();
+        this.lastTemp = todayWeather.get("temp").getAsInt();
+        this.lastIcon = todayWeather.get("weather").getAsJsonArray().get(0).getAsJsonObject().get("icon").getAsString();
 
-      this.lastWeather = todayWeather.get("weather").getAsJsonArray().get(0).getAsJsonObject().get("main").getAsString();
-      this.lastTemp = todayWeather.get("temp").getAsInt();
-      this.lastIcon = todayWeather.get("weather").getAsJsonArray().get(0).getAsJsonObject().get("icon").getAsString();
-
-      this.lastWeatherTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
-      this.lastWeatherTimestamp = Instant.ofEpochSecond(0L).until(Instant.now(), ChronoUnit.SECONDS);
+        this.lastWeatherTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
+        this.lastWeatherTimestamp = Instant.ofEpochSecond(0L).until(Instant.now(), ChronoUnit.SECONDS);
+      }
     }
   }
 
@@ -102,10 +107,10 @@ class Weather {
 
     int hours = this.lastWeatherTime.getHour();
     int minutes =  this.lastWeatherTime.getMinute();
-    
+
     String fixedHours;
     String fixedMinutes;
-    
+
     if (hours < 10) {
       fixedHours = "0" + Integer.toString(hours);
     } else {
@@ -117,7 +122,7 @@ class Weather {
     } else {
       fixedMinutes = Integer.toString(minutes);
     }
-    
+
     text(String.format("%s:%s", fixedHours, fixedMinutes), width/2, 785);
   }
 }

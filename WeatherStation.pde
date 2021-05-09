@@ -1,5 +1,3 @@
-// TODO: Get these details from .env file
-
 JSONObject variables;
 
 String city; // City to get the current weather for
